@@ -3,10 +3,10 @@ import time
 from scipy.spatial.transform import Rotation
 from complementary_filter import complementary_filter_update
 import numpy as np
+import matplotlib.pyplot as plt
 
 arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1) 
 
-# ser = serial.Serial('/dev/ttyUSB0', 2000000, timeout=2, xonxoff=False, rtscts=False, dsrdtr=False) #Tried with and without the last 3 parameters, and also at 1Mbps, same happens.
 dt = 0
 old_angular_velocity = np.zeros((1,3))
 euler = np.zeros((1, 3))
@@ -18,6 +18,8 @@ while True:
   arduino.flushInput()
   arduino.flushOutput()
   data_raw = arduino.readline()
+
+
   if not (len(data_raw)-33) and dt>0: # check if length if all values rcvd
     data_str = str(data_raw)[2:-5].split(",")
     acX = float(data_str[0])
@@ -34,6 +36,9 @@ while True:
     old_angular_velocity    = angular_velocity
 
     euler = R.as_euler('XYZ', degrees=True)
+    
   print(euler)
   end_time = time.time()
   dt = end_time - start_time
+
+print('Finished')
