@@ -2,7 +2,7 @@
 
 This is a project to implement a custom-build for a drone. Following image shows a basic first working implementation of a drone self controlling and stabilizing using Kalman Filter and Complementary filters for corrected pose estimates and control. 
 
-<img src=images/resting_tabletop.jpg height="300" width="660" />
+<img src=images/resting_tabletop.jpg height="300" width="600" />
 Figure 1: Quadrotor Resting Peacefully on Table.
 
 ## PS: Code under Development
